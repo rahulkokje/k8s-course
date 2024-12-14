@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleetman-webapp
+  namespace: udemy-course
+spec:
+  # This defines which pods are going to be represented by this service
+  selector:
+    app: webapp
+    release: "0-5"
+
+  # This defines which ports are exposed by the service
+  ports:
+  - name: http
+    port: 80
+    nodePort: 30080
+  
+  # Types can be LoadBalancer, NodePort or ClusterIP
+  # LoadBalancer - advanced type when loadbalancer is available
+  # NodePort - Service would be available outside the cluster
+  # ClusterIP - Provate service. Only available inside the cluster
+  type: NodePort
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: fleetman-queue
+  namespace: udemy-course
+spec:
+  selector:
+    app: queue
+    release: "1"
+  ports:
+  - name: http
+    port: 8161
+    nodePort: 30010
+  type: NodePort
