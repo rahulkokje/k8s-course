@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: webapp
+  namespace: udemy-course
+spec:
+  selector:
+    matchLabels:
+      app: webapp
+  
+  # no of replicas
+  replicas: 1
+  
+  # template for the pods
+  template:
+    metadata:
+      namespace: udemy-course
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
