@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp
+  namespace: udemy-course
+spec:
+  minReadySeconds: 30
+  selector:
+    matchLabels:
+      app: webapp
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: webapp
+    spec:
+      containers:
+      - name: webapp
+        image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5
+
+# use command 'kubectl rollout status' to check the status of the rollout after applying changes
+# we can also check history of rollout using 'kubectl rollout history' command
+# to go back to previous revision, use 'kubectl rollout undo' or 'kubectl rollout deploy'
