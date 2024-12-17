@@ -36,3 +36,17 @@ spec:
     port: 8161
     nodePort: 30010
   type: NodePort
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: database
+  namespace: udemy-course
+spec:
+  selector:
+    app: mysql
+  ports:
+  - port: 3306
+  type: ClusterIP  
